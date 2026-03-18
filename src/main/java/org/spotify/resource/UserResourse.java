@@ -9,24 +9,24 @@ import org.spotify.service.UserService;
 
 import java.util.List;
 
+@Path("/user")
 public class UserResourse {
     @Inject
     private UserService userService;
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/addStudent")
+    @Path("/addUser")
     public String addUser(User user) {
-      userService.createUser(user);
-      return "Hello RESTEasy";
+	userService.createUser(user);
+	return "Hello RESTEasy";
     }
 
-  @GET
-  @Produces(MediaType.APPLICATION_JSON)
-  @Path("/getAllStudents")
-  public Response getAllStudents() {
-    List<User> students = userService.getAllStudents();
-    return Response.ok().entity(students).build();
-  }
-    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/getAllUsers")
+    public Response getAllUsers() {
+	List<User> users = userService.getAllUsers();
+	return Response.ok().entity(users).build();
+    }    
 }

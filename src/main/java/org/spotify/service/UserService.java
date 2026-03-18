@@ -14,12 +14,12 @@ public class UserService {
   private EntityManager em;
 
   @Transactional
-  public User createStudent(User user) {
+  public User createUser(User user) {
       return em.merge(user);
   }
 
   @Transactional
-  public List<User> getAllStudents(){
+  public List<User> getAllUsers() {
     return em.createNamedQuery(User.GET_ALL_USERS, User.class).getResultList();
   }
 }
