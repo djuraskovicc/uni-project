@@ -5,8 +5,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class UserException extends Exception {
-    public UserException(String message) {
+public class SpotifyException extends Exception {
+    public SpotifyException(String message) {
 	super(message);
     }
 }

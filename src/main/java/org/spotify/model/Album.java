@@ -1,6 +1,7 @@
 package org.spotify.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,26 +12,26 @@ import jakarta.persistence.NamedQuery;
 import jakarta.persistence.SequenceGenerator;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode
-@NamedQuery(name = Playlist.GET_ALL_PLAYLISTS_FOR_USER, query = "Select p from Playlist p where p.user.id = :id")
-public class Playlist {
-    public static final String GET_ALL_PLAYLISTS_FOR_USER = "GetAllPlaylistsForUser";
+@NamedQuery(name = Album.GET_ALL_ALBUMS_FOR_ARTIST, query = "Select a from Album a where a.artist.id = :id")
+public class Album {
+    public static final String GET_ALL_ALBUMS_FOR_ARTIST = "GetAllAlbumsForArtist";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "playlist_seq")
-    @SequenceGenerator(name = "playlist_seq", sequenceName = "playlist_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "album_seq")
+    @SequenceGenerator(name = "album_seq", sequenceName = "album_seq", allocationSize = 1)
     public Long id;
-    public String name;
-
+    public String title, releaseDate;
+    
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "artist_id")
     @JsonIgnore
-    private Users user;
+    private Artist artist;
 }
